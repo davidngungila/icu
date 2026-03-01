@@ -1,0 +1,207 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer base {
+    html {
+        font-family: var(--font-sans);
+        font-size: 17px;
+    }
+
+    body {
+        font-size: 17px;
+    }
+
+    html.dark body {
+        background-color: rgb(2 6 23);
+        color: rgb(226 232 240);
+    }
+
+    html.dark #icuSidebar {
+        background-color: rgb(15 23 42);
+        border-color: rgb(30 41 59);
+    }
+
+    html.dark .icu-topbar > div {
+        background-color: rgb(2 6 23 / 0.75);
+        border-color: rgb(30 41 59);
+    }
+
+    html.dark .bg-white {
+        background-color: rgb(15 23 42);
+    }
+
+    html.dark .border-slate-200\/80 {
+        border-color: rgb(30 41 59);
+    }
+
+    html.dark .text-slate-500 {
+        color: rgb(148 163 184);
+    }
+
+    html.dark .text-slate-600 {
+        color: rgb(148 163 184);
+    }
+
+    html.dark .bg-slate-50 {
+        background-color: rgb(2 6 23);
+    }
+
+    html.dark .bg-slate-100 {
+        background-color: rgb(30 41 59);
+    }
+
+    html.dark .hover\:bg-slate-200:hover {
+        background-color: rgb(51 65 85);
+    }
+
+    html.dark .hover\:bg-slate-50:hover {
+        background-color: rgb(30 41 59);
+    }
+
+    body {
+        --icu-sidebar-width: 280px;
+        --icu-sidebar-width-collapsed: 76px;
+        --icu-topbar-height: 64px;
+    }
+
+    body.icu-sidebar-collapsed {
+        --icu-sidebar-width: var(--icu-sidebar-width-collapsed);
+    }
+
+    #icuSidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: var(--icu-sidebar-width);
+        height: 100vh;
+        overflow: hidden;
+        z-index: 30;
+    }
+
+    .icu-topbar {
+        position: fixed;
+        top: 0;
+        left: var(--icu-sidebar-width);
+        right: 0;
+        height: var(--icu-topbar-height);
+        z-index: 20;
+    }
+
+    .icu-main {
+        margin-left: var(--icu-sidebar-width);
+        padding-top: var(--icu-topbar-height);
+        min-height: 100vh;
+    }
+
+    .icu-content {
+        height: calc(100vh - var(--icu-topbar-height));
+        overflow: auto;
+        padding: 24px;
+    }
+
+    .icu-footer {
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid rgb(226 232 240 / 0.8);
+    }
+
+    html.dark .icu-footer {
+        border-top-color: rgb(30 41 59);
+    }
+
+    /* Full-screen modal dark mode */
+    html.dark .bg-black\/95 {
+        background-color: rgb(0 0 0 / 0.95);
+    }
+
+    html.dark .bg-slate-50 {
+        background-color: rgb(15 23 42);
+    }
+
+    html.dark .border-slate-200\/80 {
+        border-color: rgb(30 41 59);
+    }
+
+    html.dark .text-slate-300 {
+        color: rgb(203 213 225);
+    }
+
+    html.dark .text-slate-900 {
+        color: rgb(226 232 240);
+    }
+
+    html.dark .text-slate-700 {
+        color: rgb(226 232 240);
+    }
+
+    html.dark .text-rose-700 {
+        color: rgb(251 191 191);
+    }
+
+    html.dark .text-emerald-700 {
+        color: rgb(167 243 208);
+    }
+
+    html.dark .text-amber-700 {
+        color: rgb(252 211 77);
+    }
+
+    html.dark .bg-rose-50 {
+        background-color: rgb(127 29 29 / 0.2);
+    }
+
+    html.dark .bg-emerald-50 {
+        background-color: rgb(6 95 70 / 0.2);
+    }
+
+    html.dark .bg-amber-50 {
+        background-color: rgb(180 83 9 / 0.2);
+    }
+
+    html.dark .border-rose-200\/70 {
+        border-color: rgb(254 202 202 / 0.3);
+    }
+
+    html.dark .border-emerald-200\/70 {
+        border-color: rgb(167 243 208 / 0.3);
+    }
+
+    html.dark .border-amber-200\/70 {
+        border-color: rgb(252 211 77 / 0.3);
+    }
+
+    html.dark .bg-white {
+        background-color: rgb(15 23 42);
+    }
+
+    /* Dropdown menus dark mode */
+    html.dark .group:hover .bg-white {
+        background-color: rgb(15 23 42);
+    }
+
+    body.icu-sidebar-collapsed #icuSidebar {
+        width: var(--icu-sidebar-width);
+    }
+
+    body.icu-sidebar-collapsed [data-icu-sidebar-label],
+    body.icu-sidebar-collapsed [data-icu-sidebar-subtitle],
+    body.icu-sidebar-collapsed [data-icu-sidebar-section] {
+        display: none;
+    }
+
+    body.icu-sidebar-collapsed [data-icu-chevron] {
+        display: none;
+    }
+
+    body.icu-sidebar-collapsed [data-icu-collapse-panel] {
+        display: none;
+    }
+}
