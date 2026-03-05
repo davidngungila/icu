@@ -48,15 +48,20 @@ class IcuController extends Controller
 {
     public function page(Request $request, ?string $page = 'dashboard'): View
     {
-        $role = $request->session()->get('icu_role', 'admin');
+        $role = $request->session()->get('icu_role', 'nurse'); // Default to nurse for this interface
 
         $roles = config('icu.roles', []);
         if (! array_key_exists($role, $roles)) {
-            $role = 'admin';
+            $role = 'nurse'; // Default to nurse if role not found
             $request->session()->put('icu_role', $role);
         }
 
-        $menus = config("icu.menus.$role", []);
+        // Load appropriate menu configuration based on role
+        if ($role === 'nurse') {
+            $menus = config('icu-nurse-menus', []);
+        } else {
+            $menus = config("icu.menus.$role", []);
+        }
 
         $flatPages = $this->flattenPages($menus);
         if (! in_array($page, $flatPages, true)) {
@@ -73,6 +78,22 @@ class IcuController extends Controller
             'page' => $page,
             'title' => $title,
         ];
+
+        // Add sample data for nurse pages
+        if ($role === 'nurse') {
+            $data['activePatients'] = 24;
+            $data['criticalAlerts'] = 3;
+            $data['pendingMeds'] = 8;
+            $data['availableBeds'] = 4;
+            
+            // Add more sample data as needed
+            $data['patients'] = [
+                ['id' => 'P001', 'name' => 'John Smith', 'age' => 45, 'bed' => 'ICU-001', 'condition' => 'Post-operative', 'status' => 'stable'],
+                ['id' => 'P002', 'name' => 'Maria Garcia', 'age' => 62, 'bed' => 'ICU-002', 'condition' => 'Respiratory Failure', 'status' => 'critical'],
+                ['id' => 'P003', 'name' => 'Robert Johnson', 'age' => 58, 'bed' => 'ICU-003', 'condition' => 'Cardiac Monitoring', 'status' => 'stable'],
+                ['id' => 'P004', 'name' => 'Susan Chen', 'age' => 71, 'bed' => 'ICU-004', 'condition' => 'Sepsis Management', 'status' => 'warning'],
+            ];
+        }
 
         if (in_array($page, [
             'admin/users/overview',

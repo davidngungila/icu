@@ -1,0 +1,320 @@
+/* ICU Advanced Menu System Styles */
+
+/* Sidebar Transitions */
+.icu-sidebar {
+    transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.icu-sidebar.collapsed {
+    width: 4rem;
+}
+
+.icu-sidebar.collapsed .icu-sidebar-label,
+.icu-sidebar.collapsed .icu-sidebar-subtitle {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Menu Item Animations */
+.icu-menu-item {
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+.icu-menu-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 0 2px 2px 0;
+    transform: scaleY(0);
+    transition: transform 0.2s ease-in-out;
+}
+
+.icu-menu-item.active::before {
+    transform: scaleY(1);
+}
+
+.icu-menu-item:hover {
+    transform: translateX(2px);
+}
+
+/* Badge Animations */
+.icu-badge {
+    animation: badgePulse 2s infinite;
+}
+
+.icu-badge.critical {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    animation: criticalPulse 1.5s infinite;
+}
+
+.icu-badge.warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+    animation: warningPulse 2s infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes criticalPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+@keyframes warningPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+    }
+}
+
+/* Real-time Indicators */
+.icu-realtime-indicator {
+    position: relative;
+}
+
+.icu-realtime-indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -8px;
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    animation: realtimePulse 2s infinite;
+}
+
+@keyframes realtimePulse {
+    0%, 100% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(-50%) scale(1.2);
+    }
+}
+
+/* Collapsible Menu Transitions */
+.icu-collapse-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.icu-collapse-panel.expanded {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.icu-chevron {
+    transition: transform 0.3s ease-in-out;
+}
+
+.icu-chevron.rotated {
+    transform: rotate(180deg);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .icu-sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        height: 100vh;
+        z-index: 50;
+        transition: left 0.3s ease-in-out;
+    }
+    
+    .icu-sidebar.mobile-open {
+        left: 0;
+    }
+    
+    .icu-sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 40;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+    
+    .icu-sidebar-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@media (max-width: 640px) {
+    .icu-sidebar {
+        width: 85%;
+        max-width: 300px;
+    }
+}
+
+/* Accessibility Improvements */
+.icu-menu-item:focus-visible {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
+    border-radius: 0.5rem;
+}
+
+.icu-menu-item[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.icu-menu-item[disabled]:hover {
+    transform: none;
+    background-color: transparent;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .icu-menu-item {
+        border: 1px solid currentColor;
+    }
+    
+    .icu-badge {
+        border: 1px solid #000;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .icu-sidebar,
+    .icu-menu-item,
+    .icu-badge,
+    .icu-collapse-panel,
+    .icu-chevron,
+    .icu-realtime-indicator::before {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .icu-sidebar {
+        background: #1f2937;
+        border-color: #374151;
+    }
+    
+    .icu-menu-item {
+        color: #f9fafb;
+    }
+    
+    .icu-menu-item:hover {
+        background-color: #374151;
+    }
+    
+    .icu-menu-item.active {
+        background-color: #065f46;
+        color: #fff;
+    }
+}
+
+/* Keyboard Navigation */
+.icu-menu-item.keyboard-focused {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    border-radius: 0.5rem;
+}
+
+/* Print Styles */
+@media print {
+    .icu-sidebar {
+        display: none;
+    }
+}
+
+/* Loading States */
+.icu-menu-loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.icu-menu-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: loadingShimmer 1.5s infinite;
+}
+
+@keyframes loadingShimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Tooltips */
+.icu-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: #fff;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+    z-index: 100;
+    margin-bottom: 0.5rem;
+}
+
+.icu-tooltip::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: #1f2937;
+}
+
+.icu-menu-item:hover .icu-tooltip {
+    opacity: 1;
+    visibility: visible;
+}

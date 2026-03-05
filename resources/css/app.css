@@ -187,6 +187,89 @@
         background-color: rgb(15 23 42);
     }
 
+    /* Analytics & Reports Layout Fixes */
+    .icu-content {
+        overflow-x: auto;
+        max-width: calc(100vw - var(--icu-sidebar-width));
+    }
+
+    /* Ensure charts and tables don't overflow */
+    .icu-content canvas {
+        max-width: 100%;
+        height: auto !important;
+    }
+
+    .icu-content table {
+        table-layout: auto;
+        width: 100%;
+        min-width: 800px;
+    }
+
+    /* Responsive fixes for analytics pages */
+    @media (max-width: 1024px) {
+        .icu-content {
+            padding: 16px 12px;
+        }
+        
+        .icu-content .grid-cols-4 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .icu-content .grid-cols-3 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .icu-content .lg\:grid-cols-3 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .icu-content {
+            padding: 12px 8px;
+        }
+        
+        .icu-content .grid-cols-4,
+        .icu-content .grid-cols-3,
+        .icu-content .lg\:grid-cols-3 {
+            grid-template-columns: 1fr;
+        }
+        
+        .icu-content .text-2xl {
+            font-size: 1.25rem;
+        }
+        
+        .icu-content .text-lg {
+            font-size: 1.125rem;
+        }
+    }
+
+    /* Chart container fixes */
+    .icu-content .bg-white {
+        overflow-x: auto;
+        min-width: 0;
+    }
+
+    .icu-content .border-slate-200\/80 {
+        min-width: 0;
+    }
+
+    /* Table responsive fixes */
+    @media (max-width: 640px) {
+        .icu-content table {
+            font-size: 0.75rem;
+        }
+        
+        .icu-content table th,
+        .icu-content table td {
+            padding: 8px 4px;
+        }
+        
+        .icu-content .text-sm {
+            font-size: 0.7rem;
+        }
+    }
+
     body.icu-sidebar-collapsed #icuSidebar {
         width: var(--icu-sidebar-width);
     }
