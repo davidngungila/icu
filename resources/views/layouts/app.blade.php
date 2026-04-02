@@ -6,7 +6,10 @@
         <title>{{ $title ?? config('app.name', 'AfyaSmart HMS') }}</title>
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=manrope:400,500,600,700" rel="stylesheet" />
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link href="{{ asset('build/assets/app-1M3QmWyX.css') }}" rel="stylesheet">
+        <link href="{{ asset('build/assets/icu-menu-KNd2QRD8.css') }}" rel="stylesheet">
+        <script src="{{ asset('build/assets/app-DYJnTmM6.js') }}" defer></script>
+        <script src="{{ asset('build/assets/icu-menu-D6cUZvEj.js') }}" defer></script>
     </head>
     <body class="min-h-screen bg-slate-50 text-slate-900">
         <aside id="icuSidebar" class="bg-white border-r border-slate-200/80 transition-[width] duration-200 ease-out">

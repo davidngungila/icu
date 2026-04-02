@@ -10,6 +10,16 @@ return [
         'permissions' => ['view_dashboard'],
     ],
 
+    'hms_system' => [
+        'label' => 'HMS System',
+        'icon' => 'workflow',
+        'priority' => 1.5,
+        'badge' => null,
+        'permissions' => ['view_hms'],
+        'url' => '/hms/dashboard',
+        'external' => true,
+    ],
+
     'patient_care' => [
         'label' => 'Patient Care',
         'icon' => 'patients',

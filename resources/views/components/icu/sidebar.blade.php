@@ -217,12 +217,14 @@
                 </div>
             @else
                 @php
-                    $href = isset($item['route']) ? route($item['route'], $item['params'] ?? []) : route('icu.page', ['page' => $item['page']]);
+                    $href = isset($item['url']) ? $item['url'] : (isset($item['route']) ? route($item['route'], $item['params'] ?? []) : route('icu.page', ['page' => $item['page']]));
+                    $isExternal = isset($item['external']) && $item['external'] === true;
                 @endphp
 
                 <a
                     href="{{ $href }}"
                     class="group flex items-center justify-between mt-1 px-3 py-2 rounded-xl text-sm font-medium transition-colors {{ $isActive ? 'bg-emerald-600 text-white' : 'text-slate-700 hover:bg-slate-50' }}"
+                    @if ($isExternal) target="_blank" @endif
                     @if (!$hasPermission($item['permissions'] ?? [])) disabled aria-disabled="true" @endif
                     @if ($isRealtime($item)) data-realtime="true" @endif
                 >

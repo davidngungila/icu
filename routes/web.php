@@ -9,10 +9,13 @@ use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\IcuController;
+use App\Http\Controllers\PatientRegistrationController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\TriageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('icu.page', ['page' => 'admin/command-center']);
+    return redirect()->route('hms.dashboard.index');
 });
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -25,6 +28,57 @@ Route::middleware('auth')->group(function () {
         ->name('icu.page');
 
     Route::post('/icu/role', [IcuController::class, 'setRole'])->name('icu.setRole');
+
+    // HMS Routes
+    Route::prefix('hms')->name('hms.')->group(function () {
+        // Dashboard
+        Route::get('/dashboard', function() {
+            return view('hms.dashboard.index');
+        })->name('dashboard.index');
+
+        // Patient Registration
+        Route::prefix('patient-registration')->name('patient-registration.')->group(function () {
+            Route::get('/', [PatientRegistrationController::class, 'index'])->name('index');
+            Route::get('/create', [PatientRegistrationController::class, 'create'])->name('create');
+            Route::post('/', [PatientRegistrationController::class, 'store'])->name('store');
+            Route::get('/{patient}', [PatientRegistrationController::class, 'show'])->name('show');
+            Route::get('/{patient}/edit', [PatientRegistrationController::class, 'edit'])->name('edit');
+            Route::put('/{patient}', [PatientRegistrationController::class, 'update'])->name('update');
+            Route::get('/search', [PatientRegistrationController::class, 'search'])->name('search');
+            Route::get('/stats', [PatientRegistrationController::class, 'getPatientStats'])->name('stats');
+        });
+
+        // Appointments
+        Route::prefix('appointments')->name('appointments.')->group(function () {
+            Route::get('/', [AppointmentController::class, 'index'])->name('index');
+            Route::get('/create', [AppointmentController::class, 'create'])->name('create');
+            Route::post('/', [AppointmentController::class, 'store'])->name('store');
+            Route::get('/{appointment}', [AppointmentController::class, 'show'])->name('show');
+            Route::get('/{appointment}/edit', [AppointmentController::class, 'edit'])->name('edit');
+            Route::put('/{appointment}', [AppointmentController::class, 'update'])->name('update');
+            Route::post('/{appointment}/check-in', [AppointmentController::class, 'checkIn'])->name('check-in');
+            Route::post('/{appointment}/complete', [AppointmentController::class, 'complete'])->name('complete');
+            Route::post('/{appointment}/cancel', [AppointmentController::class, 'cancel'])->name('cancel');
+            Route::get('/availability', [AppointmentController::class, 'getDoctorAvailability'])->name('availability');
+            Route::get('/calendar', [AppointmentController::class, 'getCalendar'])->name('calendar');
+            Route::get('/stats', [AppointmentController::class, 'getAppointmentStats'])->name('stats');
+            Route::get('/search', [AppointmentController::class, 'search'])->name('search');
+        });
+
+        // Triage
+        Route::prefix('triage')->name('triage.')->group(function () {
+            Route::get('/', [TriageController::class, 'index'])->name('index');
+            Route::get('/create/{patient}', [TriageController::class, 'create'])->name('create');
+            Route::post('/{patient}', [TriageController::class, 'store'])->name('store');
+            Route::get('/{admission}', [TriageController::class, 'show'])->name('show');
+            Route::post('/vitals/{patient}', [TriageController::class, 'updateVitals'])->name('vitals.update');
+            Route::get('/beds/available', [TriageController::class, 'getAvailableBeds'])->name('beds.available');
+            Route::get('/stats', [TriageController::class, 'getTriageStats'])->name('stats');
+            Route::post('/discharge/{admission}', [TriageController::class, 'dischargePatient'])->name('discharge');
+            Route::get('/vitals/{patient}', [TriageController::class, 'getPatientVitals'])->name('vitals');
+            Route::get('/search', [TriageController::class, 'search'])->name('search');
+        });
+    });
 
     Route::post('/admin/users', [UserManagementController::class, 'createUser'])->name('admin.users.create');
     Route::post('/admin/roles', [UserManagementController::class, 'createRole'])->name('admin.roles.create');
