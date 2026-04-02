@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Login · {{ config('app.name', 'ICU') }}</title>
+        <title>Login · {{ config('app.name', 'AfyaSmart HMS') }}</title>
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=manrope:400,500,600,700" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -11,10 +11,10 @@
     <body class="min-h-screen bg-slate-50 text-slate-900 flex items-center justify-center p-6">
         <div class="w-full max-w-md">
             <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-semibold">ICU</div>
+                <div class="flex items-center justify-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-semibold">AS</div>
                     <div>
-                        <div class="text-lg font-semibold">ICU System</div>
+                        <div class="text-lg font-semibold">AfyaSmart HMS</div>
                         <div class="text-sm text-slate-500">Sign in to continue</div>
                     </div>
                 </div>

@@ -135,9 +135,9 @@
 <div class="h-full flex flex-col">
     <div class="px-5 py-4 border-b border-slate-200/80">
         <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-semibold">ICU</div>
+            <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-semibold">AS</div>
             <div class="min-w-0" data-icu-sidebar-label>
-                <div class="text-sm font-semibold leading-5 truncate">ICU System</div>
+                <div class="text-sm font-semibold leading-5 truncate">AfyaSmart HMS</div>
                 <div class="text-xs text-slate-500 truncate" data-icu-sidebar-subtitle>{{ $roleLabel }}</div>
             </div>
 

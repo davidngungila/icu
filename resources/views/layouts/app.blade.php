@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ $title ?? config('app.name', 'ICU') }}</title>
+        <title>{{ $title ?? config('app.name', 'AfyaSmart HMS') }}</title>
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=manrope:400,500,600,700" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -23,7 +23,7 @@
 
                 <footer class="icu-footer">
                     <div class="space-y-1 text-center">
-                        <div class="text-sm font-medium">© 2026 ICU Monitoring Solutions. All Rights Reserved.</div>
+                        <div class="text-sm font-medium">© 2026 AfyaSmart HMS. All Rights Reserved.</div>
                         <div class="text-xs text-slate-500">Compliant with PDPA (Tanzania), TMDA &amp; International Medical Device Standards.</div>
                         <div class="text-xs text-slate-500">Secure • Encrypted • Reliable • Life-Critical Infrastructure</div>
                     </div>
